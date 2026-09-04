@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yusif Mammadzada | Cybersecurity & CTF Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #0b0f19;
+            --card-bg: #131d31;
+            --card-border: #1e293b;
+            --accent: #38bdf8;
+            --accent-glow: rgba(56, 189, 248, 0.15);
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --tag-bg: #1e293b;
+            --tag-text: #38bdf8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 750px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #38bdf8, #818cf8, #c084fc);
+        }
+
+        .header {
+            margin-bottom: 30px;
+        }
+
+        .greeting {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .wave {
+            animation: wave 2s infinite;
+            display: inline-block;
+        }
+
+        .bio {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px solid var(--card-border);
+            padding-bottom: 8px;
+        }
+
+        .section-title i {
+            color: var(--accent);
+        }
+
+        .tags-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag {
+            background: var(--tag-bg);
+            color: var(--tag-text);
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            transition: all 0.2s ease;
+        }
+
+        .tag:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .links-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .link-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid var(--card-border);
+            padding: 12px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .link-card:hover {
+            background: var(--accent-glow);
+            border-color: var(--accent);
+            transform: translateX(4px);
+        }
+
+        .link-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .link-left i {
+            color: var(--accent);
+            font-size: 1.1rem;
+            width: 20px;
+            text-align: center;
+        }
+
+        .link-card i.fa-arrow-right {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            transition: transform 0.2s;
+        }
+
+        .link-card:hover i.fa-arrow-right {
+            transform: translateX(3px);
+            color: var(--accent);
+        }
+
+        .stats-box {
+            margin-top: 30px;
+            text-align: center;
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--card-border);
+            border-radius: 10px;
+            padding: 16px;
+        }
+
+        .stats-box img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 6px;
+        }
+
+        @keyframes wave {
+            0% { transform: rotate(0deg); }
+            20% { transform: rotate(14deg); }
+            40% { transform: rotate(-8deg); }
+            60% { transform: rotate(14deg); }
+            80% { transform: rotate(-4deg); }
+            100% { transform: rotate(0deg); }
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+            .greeting {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1 class="greeting">Salam, mən Yusifəm! <span class="wave">👋</span></h1>
+            <p class="bio">
+                Kibertəhlükəsizlik və CTF (Capture-the-Flag) tapşırıqları ilə fəal şəkildə məşğul oluram. Öyrəndiklərimi, apardığım tədqiqatları, həll etdiyim otaqların write-up-larını və hazırladığım alətləri burada paylaşıram.
+            </p>
+        </div>
+
+        <!-- Skills & Domains -->
+        <div class="section">
+            <h2 class="section-title"><i class="fa-solid fa-shield-halved"></i> Maraq və İxtisas Sahələrim</h2>
+            <div class="tags-grid">
+                <span class="tag">Network Security</span>
+                <span class="tag">Cryptography</span>
+                <span class="tag">CTF (Capture The Flag)</span>
+                <span class="tag">Web Pentesting</span>
+                <span class="tag">OSINT</span>
+                <span class="tag">Digital Forensics</span>
+                <span class="tag">Linux & Bash</span>
+            </div>
+        </div>
+
+        <!-- Recent Projects & Write-ups -->
+        <div class="section">
+            <h2 class="section-title"><i class="fa-solid fa-rocket"></i> Son Yazılarım və Layihələrim</h2>
+            <div class="links-list">
+                <a href="https://medium.com/@YusifMammadzada/pickle-rick-tryhackme-ctf-5a3c0789656d" target="_blank" class="link-card">
+                    <div class="link-left">
+                        <i class="fa-brands fa-medium"></i>
+                        <span>TryHackMe - Pickle Rick Həlli (Write-up)</span>
+                    </div>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+                <a href="https://github.com/cw-011/AZE-recon-framework" target="_blank" class="link-card">
+                    <div class="link-left">
+                        <i class="fa-brands fa-github"></i>
+                        <span>AZE-recon-framework (Son Repozitoriya)</span>
+                    </div>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Social & Platforms -->
+        <div class="section">
+            <h2 class="section-title"><i class="fa-solid fa-globe"></i> Haradan Tapa Bilərsiniz?</h2>
+            <div class="links-list">
+                <a href="https://tryhackme.com/p/yuss111" target="_blank" class="link-card">
+                    <div class="link-left">
+                        <i class="fa-solid fa-terminal"></i>
+                        <span>TryHackMe Profilim</span>
+                    </div>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+                <a href="https://medium.com/@YusifMammadzada" target="_blank" class="link-card">
+                    <div class="link-left">
+                        <i class="fa-brands fa-medium"></i>
+                        <span>Medium Yazılarım</span>
+                    </div>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+                <a href="https://github.com/cw-011" target="_blank" class="link-card">
+                    <div class="link-left">
+                        <i class="fa-brands fa-github"></i>
+                        <span>GitHub Profilim</span>
+                    </div>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- GitHub Stats -->
+        <div class="stats-box">
+            <img src="https://github-readme-stats.vercel.app/api?username=cw-011&show_icons=true&theme=radical&hide_border=true&bg_color=131d31" alt="GitHub Stats" />
+        </div>
+    </div>
+
+</body>
+</html>
