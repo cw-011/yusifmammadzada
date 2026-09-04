@@ -3,232 +3,299 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yusif Mammadzada | Cybersecurity & CTF Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    <title>Yusif Mammadzada | Cybersecurity Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --bg-color: #07090e;
-            --card-bg: #0f172a;
-            --card-border: #1e293b;
-            --accent: #38bdf8;
-            --accent-glow: rgba(56, 189, 248, 0.2);
-            --accent-secondary: #818cf8;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --tag-bg: #1e293b;
-            --tag-text: #38bdf8;
+            --bg: #030712;
+            --surface: #0b0f19;
+            --surface-card: #111827;
+            --border: #1f2937;
+            --border-glow: #38bdf850;
+            --primary: #38bdf8;
+            --primary-glow: rgba(56, 189, 248, 0.15);
+            --secondary: #818cf8;
+            --accent: #22c55e;
+            --text-main: #f9fafb;
+            --text-muted: #9ca3af;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            scroll-behavior: smooth;
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-color);
+            font-family: 'Plus Jakarta+Sans', sans-serif;
+            background-color: var(--bg);
             color: var(--text-main);
-            line-height: 1.7;
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 30px 15px;
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(56, 189, 248, 0.05) 0%, transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(129, 140, 248, 0.05) 0%, transparent 40%);
+            overflow-x: hidden;
+            position: relative;
         }
 
-        .container {
-            width: 100%;
-            max-width: 850px;
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 20px;
-            padding: 50px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+        /* Cyberpunk Grid Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-image: 
+                linear-gradient(to right, rgba(31, 41, 55, 0.15) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(31, 41, 55, 0.15) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: -2;
+        }
+
+        /* Glowing Orbs */
+        .ambient-glow {
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(56, 189, 248, 0.08) 0%, transparent 70%);
+            top: -200px;
+            right: -200px;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .ambient-glow-2 {
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(129, 140, 248, 0.08) 0%, transparent 70%);
+            bottom: -200px;
+            left: -200px;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--surface), var(--surface-card));
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 45px;
             position: relative;
             overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            margin-bottom: 30px;
         }
 
-        .container::before {
+        .hero::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, #38bdf8, #818cf8, #c084fc);
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
         }
 
-        .header {
-            margin-bottom: 40px;
-            border-bottom: 1px solid var(--card-border);
-            padding-bottom: 30px;
-        }
-
-        .profile-badge {
+        .status-badge {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: rgba(56, 189, 248, 0.1);
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
             color: var(--accent);
             padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.85rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
             font-weight: 600;
-            margin-bottom: 15px;
-            border: 1px solid rgba(56, 189, 248, 0.2);
+            margin-bottom: 20px;
+            font-family: 'JetBrains Mono', monospace;
         }
 
-        .greeting {
-            font-size: 2.2rem;
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--accent);
+            animation: pulse 2s infinite;
+        }
+
+        h1 {
+            font-size: 2.5rem;
             font-weight: 800;
+            letter-spacing: -1px;
             margin-bottom: 15px;
-            letter-spacing: -0.5px;
             display: flex;
             align-items: center;
             gap: 12px;
         }
 
         .wave {
-            animation: wave 2s infinite;
             display: inline-block;
+            animation: wave 2s infinite;
             transform-origin: 70% 70%;
         }
 
-        .bio {
+        .hero-desc {
             color: var(--text-muted);
-            font-size: 1.05rem;
+            font-size: 1.1rem;
+            line-height: 1.7;
             max-width: 95%;
         }
 
-        .section {
-            margin-bottom: 35px;
-        }
-
-        .section-title {
-            font-size: 1.15rem;
-            font-weight: 700;
-            color: var(--text-main);
-            margin-bottom: 16px;
+        /* Section Layouts */
+        .section-header {
             display: flex;
             align-items: center;
             gap: 10px;
-            letter-spacing: 0.3px;
+            margin: 40px 0 20px 0;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-main);
         }
 
-        .section-title i {
-            color: var(--accent);
-            font-size: 1.2rem;
+        .section-header i {
+            color: var(--primary);
         }
 
-        .tags-grid {
+        /* Skills Badges */
+        .skills-grid {
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
         }
 
-        .tag {
-            background: var(--tag-bg);
-            color: var(--tag-text);
-            padding: 8px 16px;
-            border-radius: 8px;
+        .skill-pill {
+            background: var(--surface-card);
+            border: 1px solid var(--border);
+            color: var(--primary);
+            padding: 10px 18px;
+            border-radius: 12px;
+            font-family: 'JetBrains Mono', monospace;
             font-size: 0.9rem;
-            font-weight: 600;
-            border: 1px solid rgba(56, 189, 248, 0.15);
-            transition: all 0.3s ease;
-            font-family: 'Fira Code', monospace;
-        }
-
-        .tag:hover {
-            border-color: var(--accent);
-            background: rgba(56, 189, 248, 0.08);
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(56, 189, 248, 0.1);
-        }
-
-        .links-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 12px;
-        }
-
-        .link-card {
+            font-weight: 500;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            background: rgba(30, 41, 59, 0.4);
-            border: 1px solid var(--card-border);
-            padding: 16px 20px;
-            border-radius: 12px;
+            gap: 8px;
+        }
+
+        .skill-pill:hover {
+            border-color: var(--primary);
+            background: var(--primary-glow);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(56, 189, 248, 0.15);
+        }
+
+        /* Cards Grid */
+        .grid-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+        }
+
+        .card {
+            background: var(--surface-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
             text-decoration: none;
             color: var(--text-main);
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .link-card:hover {
-            background: var(--accent-glow);
-            border-color: var(--accent);
-            transform: translateX(6px);
-            box-shadow: 0 4px 20px rgba(56, 189, 248, 0.15);
-        }
-
-        .link-left {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
-            align-items: center;
-            gap: 15px;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
         }
 
-        .link-icon-wrapper {
-            width: 40px;
-            height: 40px;
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary-glow), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 0;
+        }
+
+        .card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .card-icon {
+            width: 48px;
+            height: 48px;
             background: rgba(56, 189, 248, 0.1);
-            border-radius: 8px;
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--accent);
-            font-size: 1.2rem;
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 16px;
         }
 
-        .link-info h4 {
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--text-main);
-            margin-bottom: 2px;
+        .card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
 
-        .link-info span {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            font-weight: 400;
-        }
-
-        .link-card i.fa-arrow-right {
-            color: var(--text-muted);
+        .card h3 i {
             font-size: 0.9rem;
-            transition: transform 0.3s;
+            color: var(--text-muted);
+            transition: transform 0.3s, color 0.3s;
         }
 
-        .link-card:hover i.fa-arrow-right {
-            transform: translateX(4px);
-            color: var(--accent);
+        .card:hover h3 i {
+            transform: translate(3px, -3px);
+            color: var(--primary);
         }
 
-        .stats-box {
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* Stats Terminal Box */
+        .terminal-box {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 24px;
             margin-top: 40px;
             text-align: center;
-            background: rgba(7, 9, 14, 0.5);
-            border: 1px solid var(--card-border);
-            border-radius: 14px;
-            padding: 20px;
+            box-shadow: inset 0 2px 6px rgba(0,0,0,0.5);
         }
 
-        .stats-box img {
+        .terminal-box img {
             max-width: 100%;
             height: auto;
             border-radius: 8px;
@@ -243,120 +310,115 @@
             100% { transform: rotate(0deg); }
         }
 
+        @keyframes pulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(34, 197, 94, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+        }
+
         @media (max-width: 768px) {
-            .container {
-                padding: 25px;
-            }
-            .greeting {
-                font-size: 1.8rem;
-            }
+            .wrapper { padding: 30px 15px; }
+            .hero { padding: 30px 20px; }
+            h1 { font-size: 1.9rem; }
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <!-- Header -->
-        <div class="header">
-            <div class="profile-badge">
-                <i class="fa-solid fa-shield-cat"></i> Cybersecurity Enthusiast & CTF Player
+    <div class="ambient-glow"></div>
+    <div class="ambient-glow-2"></div>
+
+    <div class="wrapper">
+        <!-- Hero Profile Section -->
+        <div class="hero">
+            <div class="status-badge">
+                <div class="status-dot"></div>
+                <span>SYSTEM ONLINE // CTF OPERATIVE</span>
             </div>
-            <h1 class="greeting">Salam, mən Yusif Mammadzada! <span class="wave">👋</span></h1>
-            <p class="bio">
-                Kibertəhlükəsizlik, CTF (Capture-the-Flag) yarışları və rəqəmsal tədqiqatlarla fəal şəkildə məşğul oluram. Öyrəndiklərimi, həll etdiyim otaqların write-up-larını və layihələrimi burada paylaşıram.
+            <h1>Salam, mən Yusif Mammadzada! <span class="wave">👋</span></h1>
+            <p class="hero-desc">
+                Kibertəhlükəsizlik mütəxəssisi və CTF (Capture-the-Flag) oyunçusuyam. Şəbəkə təhlükəsizliyi, kriptoqrafiya və veb pentesting sahələrində tədqiqatlar aparır, öyrəndiklərimi və həll yollarımı rəqəmsal dünyada paylaşıram.
             </p>
         </div>
 
-        <!-- Skills & Domains -->
-        <div class="section">
-            <h2 class="section-title"><i class="fa-solid fa-layer-group"></i> Maraq və İxtisas Sahələrim</h2>
-            <div class="tags-grid">
-                <span class="tag">Network Security</span>
-                <span class="tag">Cryptography</span>
-                <span class="tag">CTF (Capture The Flag)</span>
-                <span class="tag">Web Pentesting</span>
-                <span class="tag">OSINT</span>
-                <span class="tag">Linux & Bash</span>
-            </div>
+        <!-- Skills Section -->
+        <div class="section-header">
+            <i class="fa-solid fa-terminal"></i>
+            <span>Maraq və İxtisas Sahələrim</span>
+        </div>
+        <div class="skills-grid">
+            <div class="skill-pill"><i class="fa-solid fa-shield-halved"></i> Network Security</div>
+            <div class="skill-pill"><i class="fa-solid fa-key"></i> Cryptography</div>
+            <div class="skill-pill"><i class="fa-solid fa-flag"></i> CTF Challenges</div>
+            <div class="skill-pill"><i class="fa-solid fa-globe"></i> Web Pentesting</div>
+            <div class="skill-pill"><i class="fa-solid fa-magnifying-glass"></i> OSINT</div>
+            <div class="skill-pill"><i class="fa-solid fa-terminal"></i> Linux & Bash</div>
         </div>
 
-        <!-- Recent Projects & Write-ups -->
-        <div class="section">
-            <h2 class="section-title"><i class="fa-solid fa-fire"></i> Son Yazılarım və Layihələrim</h2>
-            <div class="links-grid">
-                <a href="https://medium.com/@YusifMammadzada/pickle-rick-tryhackme-ctf-5a3c0789656d" target="_blank" class="link-card">
-                    <div class="link-left">
-                        <div class="link-icon-wrapper">
-                            <i class="fa-brands fa-medium"></i>
-                        </div>
-                        <div class="link-info">
-                            <h4>TryHackMe - Pickle Rick Həlli</h4>
-                            <span>Medium üzərindən ətraflı CTF write-up-ı</span>
-                        </div>
+        <!-- Projects & Write-ups -->
+        <div class="section-header">
+            <i class="fa-solid fa-fire"></i>
+            <span>Son Yazılarım və Layihələrim</span>
+        </div>
+        <div class="grid-cards">
+            <a href="https://medium.com/@YusifMammadzada/pickle-rick-tryhackme-ctf-5a3c0789656d" target="_blank" class="card">
+                <div class="card-content">
+                    <div class="card-icon">
+                        <i class="fa-brands fa-medium"></i>
                     </div>
-                    <i class="fa-solid fa-arrow-right"></i>
-                </a>
-                <a href="https://github.com/cw-011/AZE-recon-framework" target="_blank" class="link-card">
-                    <div class="link-left">
-                        <div class="link-icon-wrapper">
-                            <i class="fa-brands fa-github"></i>
-                        </div>
-                        <div class="link-info">
-                            <h4>AZE-recon-framework</h4>
-                            <span>Son açıq mənbəli GitHub repozitoriyam</span>
-                        </div>
+                    <h3>TryHackMe - Pickle Rick <i class="fa-solid fa-arrow-up-right-from-square"></i></h3>
+                    <p>Medium üzərindən ətraflı addım-addım CTF write-up təhlili.</p>
+                </div>
+            </a>
+            <a href="https://github.com/cw-011/AZE-recon-framework" target="_blank" class="card">
+                <div class="card-content">
+                    <div class="card-icon">
+                        <i class="fa-brands fa-github"></i>
                     </div>
-                    <i class="fa-solid fa-arrow-right"></i>
-                </a>
-            </div>
+                    <h3>AZE-recon-framework <i class="fa-solid fa-arrow-up-right-from-square"></i></h3>
+                    <p>Kibertəhlükəsizlik və kəşfiyyat üçün hazırlanmış açıq mənbəli alət.</p>
+                </div>
+            </a>
         </div>
 
-        <!-- Social & Platforms -->
-        <div class="section">
-            <h2 class="section-title"><i class="fa-solid fa-globe"></i> Haradan Tapa Bilərsiniz?</h2>
-            <div class="links-grid">
-                <a href="https://tryhackme.com/p/yuss111" target="_blank" class="link-card">
-                    <div class="link-left">
-                        <div class="link-icon-wrapper">
-                            <i class="fa-solid fa-terminal"></i>
-                        </div>
-                        <div class="link-info">
-                            <h4>TryHackMe Profilim</h4>
-                            <span>Həll etdiyim otaqlar və reytinq</span>
-                        </div>
+        <!-- Social Links -->
+        <div class="section-header">
+            <i class="fa-solid fa-network-wired"></i>
+            <span>Sosial Platformalar & Profillər</span>
+        </div>
+        <div class="grid-cards">
+            <a href="https://tryhackme.com/p/yuss111" target="_blank" class="card">
+                <div class="card-content">
+                    <div class="card-icon">
+                        <i class="fa-solid fa-shield-cat"></i>
                     </div>
-                    <i class="fa-solid fa-arrow-right"></i>
-                </a>
-                <a href="https://medium.com/@YusifMammadzada" target="_blank" class="link-card">
-                    <div class="link-left">
-                        <div class="link-icon-wrapper">
-                            <i class="fa-brands fa-medium"></i>
-                        </div>
-                        <div class="link-info">
-                            <h4>Medium Yazılarım</h4>
-                            <span>Bütün məqalələrim və qeydlərim</span>
-                        </div>
+                    <h3>TryHackMe Profilim <i class="fa-solid fa-arrow-up-right-from-square"></i></h3>
+                    <p>Həll etdiyim otaqlar, xallar və reytinq göstəriciləri.</p>
+                </div>
+            </a>
+            <a href="https://medium.com/@YusifMammadzada" target="_blank" class="card">
+                <div class="card-content">
+                    <div class="card-icon">
+                        <i class="fa-brands fa-medium"></i>
                     </div>
-                    <i class="fa-solid fa-arrow-right"></i>
-                </a>
-                <a href="https://github.com/cw-011" target="_blank" class="link-card">
-                    <div class="link-left">
-                        <div class="link-icon-wrapper">
-                            <i class="fa-brands fa-github"></i>
-                        </div>
-                        <div class="link-info">
-                            <h4>GitHub Profilim</h4>
-                            <span>Kodlar və digər repozitoriyalar</span>
-                        </div>
+                    <h3>Medium Məqalələrim <i class="fa-solid fa-arrow-up-right-from-square"></i></h3>
+                    <p>Bütün texniki yazılarım, qeydlərim və tədqiqatlarım.</p>
+                </div>
+            </a>
+            <a href="https://github.com/cw-011" target="_blank" class="card">
+                <div class="card-content">
+                    <div class="card-icon">
+                        <i class="fa-brands fa-github"></i>
                     </div>
-                    <i class="fa-solid fa-arrow-right"></i>
-                </a>
-            </div>
+                    <h3>GitHub Profilim <i class="fa-solid fa-arrow-up-right-from-square"></i></h3>
+                    <p>Açıq kodlu layihələrim və skriptlərim.</p>
+                </div>
+            </a>
         </div>
 
         <!-- GitHub Stats -->
-        <div class="stats-box">
-            <img src="https://github-readme-stats.vercel.app/api?username=cw-011&show_icons=true&theme=radical&hide_border=true&bg_color=0f172a" alt="GitHub Stats" />
+        <div class="terminal-box">
+            <img src="https://github-readme-stats.vercel.app/api?username=cw-011&show_icons=true&theme=radical&hide_border=true&bg_color=0b0f19" alt="GitHub Stats" />
         </div>
     </div>
 
